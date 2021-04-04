@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 
-interface Props {
-  className?: string
-  title: string
+class Props {
+  className?: string = ''
+  title = 'Dropdown'
   children: React.ReactNode
+  imgSrc?: string
 }
 
 const Dropdown = (props: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
   const r = useRef<HTMLDivElement>(null)
   let C
+  let ImgComponent
 
   useEffect(() => {
     function handleClickOutside(e: any) {
@@ -27,7 +30,7 @@ const Dropdown = (props: Props): JSX.Element => {
   if (isOpen) {
     C = (
       <div
-        className="z-50 origin-top-right right-0 mt-2 mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+        className="z-50 origin-top-right right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
         role="menu"
       >
         {props.children}
@@ -35,13 +38,25 @@ const Dropdown = (props: Props): JSX.Element => {
     )
   }
 
+  if (props.imgSrc) {
+    ImgComponent = (
+      <Image
+        src={props.imgSrc}
+        width={32}
+        height={32}
+        className="cursor-pointer mr-2"
+      />
+    )
+  }
+
   return (
-    <div className={props.className} ref={r}>
+    <div className={`${props.className}`} ref={r}>
       <div
-        className="text-right cursor-pointer select-none"
+        className="text-right cursor-pointer select-none flex flex-row-reverse"
         onClick={() => setIsOpen((v) => !v)}
       >
-        {props.title}
+        {ImgComponent}
+        <div className="mx-2">{props.title}</div>
       </div>
       {C}
     </div>

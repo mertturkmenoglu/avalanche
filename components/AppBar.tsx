@@ -1,5 +1,7 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Image from 'next/image'
 
 import { UserIcon, CogIcon, LogoutIcon } from '@heroicons/react/outline'
 
@@ -28,7 +30,15 @@ const AppBar = (props: Props): JSX.Element => {
         props.className
       }
     >
-      <Dropdown className="ml-auto" title={ctx.username}>
+      <Link href="/">
+        <>
+          <Image src="/mountainsIndigo.svg" alt="Logo" width={48} height={48} />
+          <div className="font-sans font-medium tracking-widest text-2xl ml-1 cursor-pointer text-indigo-900">
+            Avalanche
+          </div>
+        </>
+      </Link>
+      <Dropdown className="ml-auto" title={ctx.username} imgSrc={ctx.userImage}>
         <div className="py-1" role="none">
           <div className={menuItemClasses} role="menuitem">
             <UserIcon className="w-6 h-6 mr-2" />

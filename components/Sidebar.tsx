@@ -1,46 +1,27 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import {
-  HomeIcon,
-  SearchIcon,
-  UserIcon,
-  CollectionIcon,
-  CubeIcon,
-  UserGroupIcon,
-  BellIcon,
-  CogIcon,
-} from '@heroicons/react/outline'
+import SidebarItem from '../interfaces/SidebarItem'
 
-import AppContext, { AppContextType } from '../contexes/AppContext'
-
-interface Props {
-  className?: string
+class Props {
+  className?: string = ''
+  items: SidebarItem[] = []
 }
 
 const Sidebar = (props: Props): JSX.Element => {
-  const ctx = useContext<AppContextType>(AppContext)
   const router = useRouter()
 
   const navElementClasses =
-    'my-2 px-4 py-2 rounded-full cursor-pointer hover:bg-green-50 flex'
-  const navElements = [
-    { link: '/', name: 'Home', icon: HomeIcon },
-    { link: '/search', name: 'Search', icon: SearchIcon },
-    { link: `/user/${ctx.username}`, name: 'Profile', icon: UserIcon },
-    { link: '/boards', name: 'Boards', icon: CollectionIcon },
-    { link: '/projects', name: 'Projects', icon: CubeIcon },
-    { link: '/teams', name: 'Teams', icon: UserGroupIcon },
-    { link: '/notifications', name: 'Notifications', icon: BellIcon },
-    { link: '/settings', name: 'Settings', icon: CogIcon },
-  ]
+    'my-2 px-4 py-2 rounded-full cursor-pointer hover:bg-green-50 hover:text-gray-700 flex'
 
   return (
-    <div className={props.className}>
+    <div
+      className={`h-screen fixed overflow-auto border-r-2 border-gray-100 ${props.className}`}
+    >
       <nav>
         <div className="mx-4">
-          {navElements.map((it) => {
+          {props.items.map((it) => {
             const IconTag = it.icon
             return (
               <Link key={it.link} href={it.link}>
