@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import Link from 'next/link'
+import { MailIcon, LockClosedIcon } from '@heroicons/react/outline'
 
 interface Props {
   onFormSubmit: (e: FormEvent<HTMLFormElement>) => void
@@ -18,7 +19,8 @@ const LoginInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         Login
       </h2>
       <div>
-        <label htmlFor="email" className="font-thin">
+        <label htmlFor="email" className="font-thin inline-flex">
+          <MailIcon className="h-6 w-6 mr-1" />
           Email
         </label>
         <input
@@ -31,7 +33,8 @@ const LoginInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         />
       </div>
       <div>
-        <label htmlFor="password" className="font-thin">
+        <label htmlFor="password" className="font-thin inline-flex">
+          <LockClosedIcon className="h6 w-6 mr-1" />
           Password
         </label>
         <input
