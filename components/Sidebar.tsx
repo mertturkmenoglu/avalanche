@@ -4,8 +4,10 @@ import { useRouter } from 'next/router'
 
 import {
   HomeIcon,
+  SearchIcon,
   UserIcon,
   CollectionIcon,
+  CubeIcon,
   UserGroupIcon,
   BellIcon,
   CogIcon,
@@ -21,8 +23,10 @@ const Sidebar = (): JSX.Element => {
     'my-2 pl-4 py-2 rounded-full cursor-pointer hover:bg-green-50 flex'
   const navElements = [
     { link: '/', name: 'Home', icon: HomeIcon },
+    { link: '/search', name: 'Search', icon: SearchIcon },
     { link: `/user/${ctx.username}`, name: 'Profile', icon: UserIcon },
     { link: '/boards', name: 'Boards', icon: CollectionIcon },
+    { link: '/projects', name: 'Projects', icon: CubeIcon },
     { link: '/teams', name: 'Teams', icon: UserGroupIcon },
     { link: '/notifications', name: 'Notifications', icon: BellIcon },
     { link: '/settings', name: 'Settings', icon: CogIcon },
