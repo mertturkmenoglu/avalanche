@@ -1,5 +1,12 @@
-const IndexPage = (): JSX.Element => (
-  <div className="bg-purple-500 text-white">Hello World</div>
-)
+import React from 'react'
+import Layout from '../components/Layout'
+
+const IndexPage = (): JSX.Element => {
+  return (
+    <Layout>
+      <div>Hello World</div>
+    </Layout>
+  )
+}
 
 export default IndexPage
