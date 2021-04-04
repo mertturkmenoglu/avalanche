@@ -27,7 +27,7 @@ const Dropdown = (props: Props): JSX.Element => {
   if (isOpen) {
     C = (
       <div
-        className="origin-top-right right-0 mt-2 mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+        className="z-50 origin-top-right right-0 mt-2 mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
         role="menu"
       >
         {props.children}

@@ -6,7 +6,11 @@ import { UserIcon, CogIcon, LogoutIcon } from '@heroicons/react/outline'
 import AppContext from '../contexes/AppContext'
 import Dropdown from './Dropdown'
 
-const AppBar = (): JSX.Element => {
+interface Props {
+  className?: string
+}
+
+const AppBar = (props: Props): JSX.Element => {
   const ctx = useContext(AppContext)
   const router = useRouter()
 
@@ -18,7 +22,12 @@ const AppBar = (): JSX.Element => {
   }
 
   return (
-    <div className="bg-gray-white h-12 flex flex-row py-2 px-4 border-b-2 border-gray-100">
+    <div
+      className={
+        'bg-white h-12 flex flex-row py-2 px-4 border-b-2 border-gray-100 ' +
+        props.className
+      }
+    >
       <Dropdown className="ml-auto" title={ctx.username}>
         <div className="py-1" role="none">
           <div className={menuItemClasses} role="menuitem">

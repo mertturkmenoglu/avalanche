@@ -15,12 +15,16 @@ import {
 
 import AppContext, { AppContextType } from '../contexes/AppContext'
 
-const Sidebar = (): JSX.Element => {
+interface Props {
+  className?: string
+}
+
+const Sidebar = (props: Props): JSX.Element => {
   const ctx = useContext<AppContextType>(AppContext)
   const router = useRouter()
 
   const navElementClasses =
-    'my-2 pl-4 py-2 rounded-full cursor-pointer hover:bg-green-50 flex'
+    'my-2 px-4 py-2 rounded-full cursor-pointer hover:bg-green-50 flex'
   const navElements = [
     { link: '/', name: 'Home', icon: HomeIcon },
     { link: '/search', name: 'Search', icon: SearchIcon },
@@ -33,9 +37,9 @@ const Sidebar = (): JSX.Element => {
   ]
 
   return (
-    <div>
+    <div className={props.className}>
       <nav>
-        <div className="mx-4 mt-8">
+        <div className="mx-4">
           {navElements.map((it) => {
             const IconTag = it.icon
             return (
