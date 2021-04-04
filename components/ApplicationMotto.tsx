@@ -1,4 +1,4 @@
-const LoginMotto = (): JSX.Element => {
+const ApplicationMotto = (): JSX.Element => {
   return (
     <div className="mr-auto my-auto text-center">
       <img src="/mountains.svg" alt="Logo" className="h-48 mx-auto" />
@@ -12,4 +12,4 @@ const LoginMotto = (): JSX.Element => {
   )
 }
 
-export default LoginMotto
+export default ApplicationMotto
