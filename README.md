@@ -1,1 +1,1 @@
-# avalanche-web-client
+# Avalanche Web Client
