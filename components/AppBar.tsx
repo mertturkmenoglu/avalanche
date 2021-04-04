@@ -1,6 +1,8 @@
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
+import { UserIcon, CogIcon, LogoutIcon } from '@heroicons/react/outline'
+
 import AppContext from '../contexes/AppContext'
 import Dropdown from './Dropdown'
 
@@ -9,7 +11,7 @@ const AppBar = (): JSX.Element => {
   const router = useRouter()
 
   const menuItemClasses =
-    'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+    'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
 
   const logout = () => {
     router.push('/login')
@@ -20,14 +22,17 @@ const AppBar = (): JSX.Element => {
       <Dropdown className="ml-auto" title={ctx.username}>
         <div className="py-1" role="none">
           <div className={menuItemClasses} role="menuitem">
+            <UserIcon className="w-6 h-6 mr-2" />
             Profile
           </div>
           <div className={menuItemClasses} role="menuitem">
+            <CogIcon className="w-6 h-6 mr-2" />
             Settings
           </div>
         </div>
         <div className="py-1" role="none">
           <div className={menuItemClasses} role="menuitem" onClick={logout}>
+            <LogoutIcon className="w-6 h-6 mr-2" />
             Logout
           </div>
         </div>

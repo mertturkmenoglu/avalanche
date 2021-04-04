@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface Props {
   className?: string
@@ -8,7 +8,21 @@ interface Props {
 
 const Dropdown = (props: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
+  const r = useRef<HTMLDivElement>(null)
   let C
+
+  useEffect(() => {
+    function handleClickOutside(e: any) {
+      if (r.current && !r.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [r])
 
   if (isOpen) {
     C = (
@@ -22,9 +36,9 @@ const Dropdown = (props: Props): JSX.Element => {
   }
 
   return (
-    <div className={props.className}>
+    <div className={props.className} ref={r}>
       <div
-        className="text-right cursor-pointer"
+        className="text-right cursor-pointer select-none"
         onClick={() => setIsOpen((v) => !v)}
       >
         {props.title}
