@@ -17,7 +17,7 @@ const AppBar = (props: Props): JSX.Element => {
   const router = useRouter()
 
   const menuItemClasses =
-    'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
+    'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none'
 
   const logout = () => {
     router.push('/login')
@@ -33,7 +33,7 @@ const AppBar = (props: Props): JSX.Element => {
       <Link href="/">
         <>
           <Image src="/mountainsIndigo.svg" alt="Logo" width={48} height={48} />
-          <div className="font-sans font-medium tracking-widest text-2xl ml-1 cursor-pointer text-indigo-900">
+          <div className="font-sans font-medium tracking-widest text-2xl ml-1 cursor-pointer text-indigo-900 select-none">
             Avalanche
           </div>
         </>

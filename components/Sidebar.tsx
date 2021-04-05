@@ -32,7 +32,8 @@ const Sidebar = (props: Props): JSX.Element => {
                       : `${navElementClasses} bg-green-50`
                   }
                 >
-                  <IconTag className="h-6 w-6 mr-2" /> {it.name}
+                  <IconTag className="h-6 w-6 mr-2" />{' '}
+                  <span className="select-none">{it.name}</span>
                 </div>
               </Link>
             )

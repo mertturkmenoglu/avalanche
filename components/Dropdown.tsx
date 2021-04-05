@@ -56,7 +56,7 @@ const Dropdown = (props: Props): JSX.Element => {
         onClick={() => setIsOpen((v) => !v)}
       >
         {ImgComponent}
-        <div className="mx-2">{props.title}</div>
+        <div className="mx-2 select-none">{props.title}</div>
       </div>
       {C}
     </div>

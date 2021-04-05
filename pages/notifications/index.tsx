@@ -1,17 +1,12 @@
 import React from 'react'
 
-import { BellIcon, ArchiveIcon } from '@heroicons/react/outline'
-
 import Layout from '../../components/Layout'
 import NotificationItem from '../../components/NotificationItem'
 import Sidebar from '../../components/Sidebar'
-import SidebarItem from '../../interfaces/SidebarItem'
+
+import { notificationsSidebarItems } from './notificationsSidebarItems'
 
 const NotificationsPage = (): JSX.Element => {
-  const sidebarItems: SidebarItem[] = [
-    { link: '/notifications', name: 'All Notifications', icon: BellIcon },
-    { link: '/notifications/archived', name: 'Archived', icon: ArchiveIcon },
-  ]
   const notifications = [
     'John Doe invited you to an event',
     'John Doe created an event',
@@ -26,7 +21,7 @@ const NotificationsPage = (): JSX.Element => {
 
   return (
     <Layout>
-      <Sidebar items={sidebarItems} />
+      <Sidebar items={notificationsSidebarItems} />
 
       <div className="ml-56">
         {notifications.map((text, idx) => {
