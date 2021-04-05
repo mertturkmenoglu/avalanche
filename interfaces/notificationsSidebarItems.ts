@@ -1,6 +1,6 @@
 import { BellIcon, ArchiveIcon } from '@heroicons/react/outline'
 
-import SidebarItem from '../../interfaces/SidebarItem'
+import SidebarItem from './SidebarItem'
 
 export const notificationsSidebarItems: SidebarItem[] = [
     { link: '/notifications', name: 'All Notifications', icon: BellIcon },

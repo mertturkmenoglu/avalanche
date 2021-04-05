@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import NotificationItem from '../../components/NotificationItem'
 import Sidebar from '../../components/Sidebar'
-import { notificationsSidebarItems } from './notificationsSidebarItems'
+import { notificationsSidebarItems } from '../../interfaces/notificationsSidebarItems'
 
 const ArchivedNotifications = (): JSX.Element => {
   const archivedNotifications: string[] = []

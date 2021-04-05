@@ -4,7 +4,7 @@ import Layout from '../../components/Layout'
 import NotificationItem from '../../components/NotificationItem'
 import Sidebar from '../../components/Sidebar'
 
-import { notificationsSidebarItems } from './notificationsSidebarItems'
+import { notificationsSidebarItems } from '../../interfaces/notificationsSidebarItems'
 
 const NotificationsPage = (): JSX.Element => {
   const notifications = [
