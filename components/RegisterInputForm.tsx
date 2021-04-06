@@ -23,15 +23,15 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
   return (
     <form
       onSubmit={onFormSubmit}
-      className="w-full max-w-md ml-36 mr-auto my-auto bg-gray-50 rounded-lg shadow-lg py-10 px-12"
+      className="bg-gray-50 rounded-lg shadow-lg py-10 px-12"
     >
       <h2 className="text-2xl font-extralight mb-8 text-center text-indigo-900">
         Register
       </h2>
       <div>
-        <label htmlFor="email" className="font-thin inline-flex">
-          <MailIcon className="h-6 w-6 mr-1" />
-          Email
+        <label htmlFor="email" className="flex items-center mb-1">
+          <MailIcon className="h-5 w-5 mr-1" />
+          <div className="text-sm">Email</div>
         </label>
         <input
           type="email"
@@ -43,9 +43,9 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         />
       </div>
       <div>
-        <label htmlFor="username" className="font-thin inline-flex">
-          <AtSymbolIcon className="h6 w-6 mr-1" />
-          Username
+        <label htmlFor="username" className="flex items-center mb-1">
+          <AtSymbolIcon className="h-5 w-5 mr-1" />
+          <div className="text-sm">Username</div>
         </label>
         <input
           type="text"
@@ -57,9 +57,9 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         />
       </div>
       <div>
-        <label htmlFor="name" className="font-thin inline-flex">
-          <UserIcon className="h6 w-6 mr-1" />
-          Name
+        <label htmlFor="name" className="flex items-center mb-1">
+          <UserIcon className="h-5 w-5 mr-1" />
+          <div className="text-sm">Name</div>
         </label>
         <input
           type="text"
@@ -71,9 +71,9 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         />
       </div>
       <div>
-        <label htmlFor="password" className="font-thin inline-flex">
-          <LockClosedIcon className="h6 w-6 mr-1" />
-          Password
+        <label htmlFor="password" className="flex items-center mb-1">
+          <LockClosedIcon className="h-5 w-5 mr-1" />
+          <div className="text-sm">Password</div>
         </label>
         <input
           type="password"
@@ -91,10 +91,10 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
         </button>
       </div>
 
-      <div className="font-thin text-gray-500 mt-4 text-center">
+      <div className="text-gray-500 mt-4 text-center">
         <Link href="/forget-password">Forgot password?</Link>
       </div>
-      <div className="font-thin text-gray-500 mt-4 text-center">
+      <div className="text-gray-500 mt-4 text-center">
         <Link href="/login">Already have an account?</Link>
       </div>
     </form>
