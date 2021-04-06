@@ -52,11 +52,11 @@ const Dropdown = (props: Props): JSX.Element => {
   return (
     <div className={`${props.className}`} ref={r}>
       <div
-        className="text-right cursor-pointer select-none flex flex-row-reverse"
+        className="text-right cursor-pointer select-none flex flex-row-reverse items-center"
         onClick={() => setIsOpen((v) => !v)}
       >
         {ImgComponent}
-        <div className="mx-2 select-none">{props.title}</div>
+        <div className="mx-2 select-none text-sm">{props.title}</div>
       </div>
       {C}
     </div>

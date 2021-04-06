@@ -17,7 +17,7 @@ const AppBar = (props: Props): JSX.Element => {
   const router = useRouter()
 
   const menuItemClasses =
-    'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none'
+    'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none items-center'
 
   const logout = () => {
     router.push('/login')
