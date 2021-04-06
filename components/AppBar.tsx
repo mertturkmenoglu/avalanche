@@ -1,7 +1,12 @@
 import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
 
-import { UserIcon, CogIcon, LogoutIcon } from '@heroicons/react/outline'
+import {
+  UserIcon,
+  CogIcon,
+  LogoutIcon,
+  MenuIcon,
+} from '@heroicons/react/outline'
 
 import AppContext from '../contexes/AppContext'
 import Dropdown from './Dropdown'
@@ -17,6 +22,10 @@ const AppBar = (props: Props): JSX.Element => {
   const menuItemClasses =
     'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none items-center'
 
+  const toggleSidebar = () => {
+    ctx.appbar = !ctx.appbar
+  }
+
   const logout = () => {
     router.push('/login')
   }
@@ -28,6 +37,12 @@ const AppBar = (props: Props): JSX.Element => {
         props.className
       }
     >
+      <div
+        className="flex items-center select-none cursor-pointer"
+        onClick={toggleSidebar}
+      >
+        <MenuIcon className="w-5 h-5 md:hidden" />
+      </div>
       <Dropdown className="ml-auto" title={ctx.username} imgSrc={ctx.userImage}>
         <div className="py-1" role="none">
           <div className={menuItemClasses} role="menuitem">

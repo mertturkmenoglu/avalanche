@@ -35,7 +35,7 @@ const Layout = ({ children }: Props): JSX.Element => {
 
   return (
     <div className="h-screen flex">
-      <Sidebar items={items} className="py-4" />
+      {ctx.appbar ? <Sidebar items={items} className="py-4" /> : null}
       <AppBar className="fixed top-0 right-0 left-48 -ml-2" />
       <div className="ml-48 mt-12">{children}</div>
     </div>

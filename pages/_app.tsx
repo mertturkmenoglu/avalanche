@@ -9,6 +9,7 @@ import AppContext, { AppContextType } from '../contexes/AppContext'
 const values: AppContextType = {
   username: 'adminmert',
   userImage: '/profile.png',
+  appbar: true,
 }
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
