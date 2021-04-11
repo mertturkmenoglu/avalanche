@@ -3,6 +3,8 @@ import 'reflect-metadata';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
+import cors from 'cors';
+
 import HelloResolver from './resolvers/HelloResolver';
 
 const main = async () => {
@@ -17,6 +19,11 @@ const main = async () => {
       res,
     }),
   });
+
+  app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  }));
 
   apolloServer.applyMiddleware({
     app,
