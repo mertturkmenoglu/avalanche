@@ -24,9 +24,20 @@ export type FieldError = {
   message: Scalars['String'];
 };
 
+export type LoginData = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  login: UserResponse;
   register: UserResponse;
+  logout: Scalars['Boolean'];
+};
+
+export type MutationLoginArgs = {
+  data: LoginData;
 };
 
 export type MutationRegisterArgs = {
@@ -35,7 +46,7 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  auth: Scalars['String'];
+  me?: Maybe<User>;
 };
 
 export type RegisterData = {
@@ -61,38 +72,123 @@ export type UserResponse = {
   user?: Maybe<User>;
 };
 
+export type LoginMutationVariables = Exact<{
+  data: LoginData;
+}>;
+
+export type LoginMutation = (
+  { __typename?: 'Mutation' }
+  & { login: (
+    { __typename?: 'UserResponse' }
+    & { errors?: Maybe<Array<(
+      { __typename?: 'FieldError' }
+      & Pick<FieldError, 'field' | 'message'>
+    )>>, user?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'name' | 'username' | 'email'>
+    )> }
+  ) }
+);
+
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
+
+export type LogoutMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'logout'>
+);
+
 export type RegisterMutationVariables = Exact<{
   data: RegisterData;
 }>;
 
-export type RegisterMutation = { __typename?: 'Mutation' } & {
-  register: { __typename?: 'UserResponse' } & {
-    errors?: Maybe<Array<{ __typename?: 'FieldError' } & Pick<FieldError, 'field' | 'message'>>>;
-    user?: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'name' | 'username' | 'email'>>;
-  };
-};
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & { register: (
+    { __typename?: 'UserResponse' }
+    & { errors?: Maybe<Array<(
+      { __typename?: 'FieldError' }
+      & Pick<FieldError, 'field' | 'message'>
+    )>>, user?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'name' | 'username' | 'email'>
+    )> }
+  ) }
+);
 
-export const RegisterDocument = gql`
-  mutation Register($data: RegisterData!) {
-    register(data: $data) {
-      errors {
-        field
-        message
-      }
-      user {
-        id
-        name
-        username
-        email
-      }
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name' | 'username' | 'email'>
+  )> }
+);
+
+export const LoginDocument = gql`
+    mutation Login($data: LoginData!) {
+  login(data: $data) {
+    errors {
+      field
+      message
+    }
+    user {
+      id
+      name
+      username
+      email
     }
   }
-`;
+}
+    `;
+
+export function useLoginMutation() {
+  return Urql.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument);
+}
+export const LogoutDocument = gql`
+    mutation Logout {
+  logout
+}
+    `;
+
+export function useLogoutMutation() {
+  return Urql.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument);
+}
+export const RegisterDocument = gql`
+    mutation Register($data: RegisterData!) {
+  register(data: $data) {
+    errors {
+      field
+      message
+    }
+    user {
+      id
+      name
+      username
+      email
+    }
+  }
+}
+    `;
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
 }
-export default ({
+export const MeDocument = gql`
+    query Me {
+  me {
+    id
+    name
+    username
+    email
+  }
+}
+    `;
+
+export function useMeQuery(options: Omit<Urql.UseQueryArgs<MeQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<MeQuery>({ query: MeDocument, ...options });
+}
+export default {
   __schema: {
     queryType: {
       name: 'Query',
@@ -136,6 +232,28 @@ export default ({
         name: 'Mutation',
         fields: [
           {
+            name: 'login',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'OBJECT',
+                name: 'UserResponse',
+              },
+            },
+            args: [
+              {
+                name: 'data',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
             name: 'register',
             type: {
               kind: 'NON_NULL',
@@ -157,6 +275,17 @@ export default ({
               },
             ],
           },
+          {
+            name: 'logout',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
         ],
         interfaces: [],
       },
@@ -165,13 +294,10 @@ export default ({
         name: 'Query',
         fields: [
           {
-            name: 'auth',
+            name: 'me',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'OBJECT',
+              name: 'User',
             },
             args: [],
           },
@@ -768,4 +894,4 @@ export default ({
     ],
     directives: [],
   },
-} as unknown) as IntrospectionQuery;
+} as unknown as IntrospectionQuery;

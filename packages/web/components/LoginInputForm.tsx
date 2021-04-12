@@ -1,9 +1,14 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { MailIcon, LockClosedIcon } from '@heroicons/react/outline';
 
+export type LoginFormData = {
+  email: string;
+  password: string;
+};
+
 interface Props {
-  onFormSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onFormSubmit: (data: LoginFormData) => void;
 }
 
 const LoginInputForm = ({ onFormSubmit }: Props): JSX.Element => {
@@ -11,7 +16,13 @@ const LoginInputForm = ({ onFormSubmit }: Props): JSX.Element => {
   const [password, setPassword] = useState('');
 
   return (
-    <form onSubmit={onFormSubmit} className="bg-gray-50 rounded-lg shadow-lg py-10 px-12">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onFormSubmit({ email, password });
+      }}
+      className="bg-gray-50 rounded-lg shadow-lg py-10 px-12"
+    >
       <h2 className="text-2xl font-extralight mb-8 text-center text-indigo-900">Login</h2>
       <div>
         <label htmlFor="email" className="flex items-center mb-1">

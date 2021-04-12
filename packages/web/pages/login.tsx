@@ -1,15 +1,21 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import LoginInputForm from '../components/LoginInputForm';
+import LoginInputForm, { LoginFormData } from '../components/LoginInputForm';
 import ApplicationMotto from '../components/ApplicationMotto';
+import { useLoginMutation } from '../generated/graphql';
 
 const LoginPage = (): JSX.Element => {
   const router = useRouter();
-  const onFormSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router.push('/');
+  const [, login] = useLoginMutation();
+
+  const onFormSubmitHandler = async (data: LoginFormData) => {
+    const response = await login({ data });
+
+    if (!response.data?.login.errors) {
+      router.push('/');
+    }
   };
 
   return (

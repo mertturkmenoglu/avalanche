@@ -4,23 +4,16 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { createClient, Provider } from 'urql';
+import { Provider } from 'urql';
 
 import AppContext, { AppContextType } from '../contexes/AppContext';
-import { isProd } from '../utils/constants';
+import { client } from '../utils/urqlClient';
 
 const values: AppContextType = {
   username: 'adminmert',
   userImage: '/profile.png',
   appbar: true,
 };
-
-const client = createClient({
-  url: isProd ? '' : 'http://localhost:4000/graphql',
-  fetchOptions: {
-    credentials: 'include',
-  },
-});
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
   <AppContext.Provider value={values}>

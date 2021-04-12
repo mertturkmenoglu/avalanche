@@ -10,12 +10,17 @@ import UserResponse from '../responses/UserResponse';
 import User from '../entities/User';
 import { validationErrorToFieldError } from '../utils/validationErrorToFieldError';
 import LoginData from '../inputs/LoginData';
+import { COOKIE_NAME } from '../constants';
 
 @Resolver()
 class AuthResolver {
-  @Query(() => String)
-  async auth(): Promise<string> {
-    return 'auth';
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { req }: MyContext): Promise<User | undefined> {
+    if (!req.session.userId) {
+      return undefined;
+    }
+
+    return User.findOne(req.session.userId);
   }
 
   @Mutation(() => UserResponse)
@@ -96,6 +101,19 @@ class AuthResolver {
         ],
       };
     }
+  }
+
+  @Mutation(() => Boolean)
+  logout(@Ctx() { req, res }: MyContext): Promise<boolean> {
+    return new Promise((resolve) => req.session.destroy((err) => {
+      res.clearCookie(COOKIE_NAME);
+      if (err) {
+        resolve(false);
+        return;
+      }
+
+      resolve(true);
+    }));
   }
 }
 
