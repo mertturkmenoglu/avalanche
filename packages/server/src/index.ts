@@ -1,3 +1,5 @@
+import path from 'path';
+
 import 'reflect-metadata';
 
 import express from 'express';
@@ -9,12 +11,24 @@ import Redis from 'ioredis';
 import connectRedis from 'connect-redis';
 import dotenv from 'dotenv-safe';
 
+import { createConnection } from 'typeorm';
 import HelloResolver from './resolvers/HelloResolver';
 import { COOKIE_NAME, FRONTEND_DOMAIN, isProd } from './constants';
 
 dotenv.config();
 
 const main = async () => {
+  const connection = await createConnection({
+    type: 'postgres',
+    url: process.env.DB_URL,
+    logging: !isProd,
+    synchronize: !isProd,
+    migrations: [path.join(__dirname, 'migrations', '*')],
+    entities: [],
+  });
+
+  connection.runMigrations();
+
   const app = express();
   const RedisStore = connectRedis(session);
   const redis = new Redis();
