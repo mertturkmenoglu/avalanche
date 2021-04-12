@@ -1,19 +1,14 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
 # testing
 /coverage
 
 # next.js
-web/.next/
-web/out/
+**/.next/
+**/out/
 
 # production
-web/build
+**/build
 
 # misc
 .DS_Store
@@ -31,7 +26,7 @@ yarn-error.log*
 .env.production.local
 
 # vercel
-.vercel
+**/.vercel
 
-*/node_modules/
-*/.env
+**/node_modules/
+**/.env
