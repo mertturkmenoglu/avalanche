@@ -9,12 +9,42 @@ import MyContext from '../MyContext';
 import UserResponse from '../responses/UserResponse';
 import User from '../entities/User';
 import { validationErrorToFieldError } from '../utils/validationErrorToFieldError';
+import LoginData from '../inputs/LoginData';
 
 @Resolver()
 class AuthResolver {
   @Query(() => String)
   async auth(): Promise<string> {
     return 'auth';
+  }
+
+  @Mutation(() => UserResponse)
+  async login(@Arg('data') data: LoginData, @Ctx() { req }: MyContext): Promise<UserResponse> {
+    const user = await User.findOne({ where: { email: data.email } });
+
+    if (!user) {
+      return {
+        errors: [{
+          field: 'login',
+          message: 'Incorrect email password combination',
+        }],
+      };
+    }
+
+    const isValid = await argon2.verify(user.password, data.password);
+
+    if (!isValid) {
+      return {
+        errors: [{
+          field: 'login',
+          message: 'Incorrect email password combination',
+        }],
+      };
+    }
+
+    req.session.userId = user.id;
+
+    return { user };
   }
 
   @Mutation(() => UserResponse)
