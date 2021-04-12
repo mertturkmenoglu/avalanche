@@ -1,11 +1,18 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   MailIcon, LockClosedIcon, AtSymbolIcon, UserIcon,
 } from '@heroicons/react/outline';
 
+export type RegisterFormData = {
+  email: string;
+  username: string;
+  name: string;
+  password: string;
+};
+
 interface Props {
-  onFormSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onFormSubmit: (data: RegisterFormData) => void;
 }
 
 const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
@@ -17,7 +24,18 @@ const RegisterInputForm = ({ onFormSubmit }: Props): JSX.Element => {
   const inputFieldClassNames = 'w-full p-2 text-sm border rounded-md outline-none transition duration-150 ease-in-out mb-4 focus:outline-none focus:ring-1 focus:ring-indigo-900';
 
   return (
-    <form onSubmit={onFormSubmit} className="bg-gray-50 rounded-lg shadow-lg py-10 px-12">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onFormSubmit({
+          email,
+          username,
+          name,
+          password,
+        });
+      }}
+      className="bg-gray-50 rounded-lg shadow-lg py-10 px-12"
+    >
       <h2 className="text-2xl font-extralight mb-8 text-center text-indigo-900">Register</h2>
       <div>
         <label htmlFor="email" className="flex items-center mb-1">
