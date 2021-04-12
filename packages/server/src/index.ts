@@ -12,8 +12,9 @@ import connectRedis from 'connect-redis';
 import dotenv from 'dotenv-safe';
 
 import { createConnection } from 'typeorm';
-import HelloResolver from './resolvers/HelloResolver';
+import AuthResolver from './resolvers/AuthResolver';
 import { COOKIE_NAME, FRONTEND_DOMAIN, isProd } from './constants';
+import User from './entities/User';
 
 dotenv.config();
 
@@ -24,10 +25,10 @@ const main = async () => {
     logging: !isProd,
     synchronize: !isProd,
     migrations: [path.join(__dirname, 'migrations', '*')],
-    entities: [],
+    entities: [User],
   });
 
-  connection.runMigrations();
+  await connection.runMigrations();
 
   const app = express();
   const RedisStore = connectRedis(session);
@@ -37,7 +38,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver],
+      resolvers: [AuthResolver],
       validate: false,
     }),
     context: ({ req, res }) => ({
