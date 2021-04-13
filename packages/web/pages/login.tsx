@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import LoginInputForm, { LoginFormData } from '../components/LoginInputForm';
 import ApplicationMotto from '../components/ApplicationMotto';
 import { useLoginMutation } from '../generated/graphql';
+import AppContext from '../contexes/AppContext';
 
 const LoginPage = (): JSX.Element => {
   const router = useRouter();
   const [, login] = useLoginMutation();
+  const ctx = useContext(AppContext);
 
   const onFormSubmitHandler = async (data: LoginFormData) => {
     const response = await login({ data });
 
     if (!response.data?.login.errors) {
+      ctx.username = response.data?.login.user?.username || '';
       router.push('/');
     }
   };
