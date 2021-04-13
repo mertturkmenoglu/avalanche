@@ -6,10 +6,14 @@ export interface AppContextType {
   appbar: boolean
 }
 
-const AppContext = createContext<AppContextType>({
+export const AppContext = createContext<AppContextType>({
   username: '',
   userImage: '/profile.png',
   appbar: true,
 });
 
-export default AppContext;
+export const defaultAppContextValues: AppContextType = {
+  username: '',
+  userImage: '/profile.png',
+  appbar: true,
+};

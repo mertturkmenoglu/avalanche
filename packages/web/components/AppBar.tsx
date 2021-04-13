@@ -5,7 +5,7 @@ import {
   UserIcon, CogIcon, LogoutIcon, MenuIcon,
 } from '@heroicons/react/outline';
 
-import AppContext from '../contexes/AppContext';
+import { AppContext } from '../contexes/AppContext';
 import Dropdown from './Dropdown';
 import { useLogoutMutation } from '../generated/graphql';
 

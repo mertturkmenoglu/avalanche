@@ -5,18 +5,12 @@ import type { AppProps } from 'next/app';
 
 import { Provider as UrqlProdiver } from 'urql';
 
-import AppContext, { AppContextType } from '../contexes/AppContext';
+import { AppContext, defaultAppContextValues } from '../contexes/AppContext';
 import { client } from '../utils/urqlClient';
 import DefaultHead from '../components/DefaultHead';
 
-const values: AppContextType = {
-  username: 'adminmert',
-  userImage: '/profile.png',
-  appbar: true,
-};
-
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
-  <AppContext.Provider value={values}>
+  <AppContext.Provider value={defaultAppContextValues}>
     <UrqlProdiver value={client}>
       <DefaultHead />
       <Component {...pageProps} />

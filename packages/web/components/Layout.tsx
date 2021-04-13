@@ -12,7 +12,7 @@ import {
 import AppBar from './AppBar';
 
 import Sidebar from './Sidebar';
-import AppContext, { AppContextType } from '../contexes/AppContext';
+import { AppContext, AppContextType } from '../contexes/AppContext';
 
 interface Props {
   children: React.ReactNode;

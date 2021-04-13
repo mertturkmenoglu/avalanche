@@ -5,7 +5,7 @@ import Head from 'next/head';
 import LoginInputForm, { LoginFormData } from '../components/LoginInputForm';
 import ApplicationMotto from '../components/ApplicationMotto';
 import { useLoginMutation } from '../generated/graphql';
-import AppContext from '../contexes/AppContext';
+import { AppContext } from '../contexes/AppContext';
 
 const LoginPage = (): JSX.Element => {
   const router = useRouter();
