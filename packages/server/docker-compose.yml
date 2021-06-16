@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:12.2-alpine
+    container_name: "avalanche-database"
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    networks:
+      - avalanche-network
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    restart: always
+  dev:
+    container_name: avalanche-dev
+    env_file:
+      - .env
+    depends_on:
+      - db
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: yarn start:debug
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - avalanche-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+  prod:
+    container_name: avalanche-prod
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    command: yarn start:prod
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - avalanche-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+volumes:
+  database_postgres:
+
+networks:
+  avalanche-network:
+    driver: bridge
