@@ -26,7 +26,7 @@ const AppBar = (props: Props): JSX.Element => {
 
   const logout = async () => {
     await logoutMutation();
-    router.push('/login');
+    await router.push('/login');
   };
 
   return (

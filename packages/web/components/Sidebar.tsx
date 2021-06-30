@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import SidebarItem from '../interfaces/SidebarItem';
@@ -18,9 +17,8 @@ const Sidebar = (props: Props): JSX.Element => {
 
   return (
     <div className={`h-screen fixed overflow-auto border-r-2 border-gray-100 ${props.className}`}>
-      <div className="ml-6 flex items-end mb-4">
-        <Image src="/mountainsIndigo.svg" height={32} width={32} />
-        <span className="ml-3">Avalanche</span>
+      <div className="ml-9">
+        Avalanche
       </div>
       <nav>
         <div className="mx-4">
