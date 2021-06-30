@@ -8,6 +8,7 @@ import { Menu } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { AppContext } from '../contexes/AppContext';
+import { useRouter } from 'next/router';
 
 interface Props {
   className?: string;
@@ -15,23 +16,27 @@ interface Props {
 
 const AppBar = (props: Props): JSX.Element => {
   const ctx = useContext(AppContext);
+  const router = useRouter();
 
   const toggleSidebar = () => {
     ctx.appbar = !ctx.appbar;
   };
 
-  const icons = [
+  const menuItems = [
     {
       icon: UserIcon,
       label: 'Profile',
+      action: () => router.push(`/user/${ctx.username}`),
     },
     {
       icon: CogIcon,
       label: 'Settings',
+      action: () => router.push('/settings'),
     },
     {
       icon: LogoutIcon,
       label: 'Logout',
+      action: () => router.push('/login'),
     }];
 
   return (
@@ -57,16 +62,17 @@ const AppBar = (props: Props): JSX.Element => {
 
         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
-            {icons.map((icon) => (
+            {menuItems.map((item) => (
               <Menu.Item>
                 {({ active }) => (
                   <button
                     className={`${
                       active ? 'bg-indigo-500 text-white' : 'text-gray-900'
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    onClick={item.action}
                   >
-                    <icon.icon className="w-6 h-6 mr-2" />
-                    {icon.label}
+                    <item.icon className="w-6 h-6 mr-2" />
+                    {item.label}
                   </button>
                 )}
               </Menu.Item>
