@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { useRouter } from 'next/router';
 
 import {
   UserIcon, CogIcon, LogoutIcon, MenuIcon,
 } from '@heroicons/react/outline';
 
+import { Menu } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
 import { AppContext } from '../contexes/AppContext';
-import Dropdown from './Dropdown';
 
 interface Props {
   className?: string;
@@ -14,43 +15,65 @@ interface Props {
 
 const AppBar = (props: Props): JSX.Element => {
   const ctx = useContext(AppContext);
-  const router = useRouter();
-
-  const menuItemClasses = 'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none items-center';
 
   const toggleSidebar = () => {
     ctx.appbar = !ctx.appbar;
   };
 
-  const logout = async () => {
-    await router.push('/login');
-  };
+  const icons = [
+    {
+      icon: UserIcon,
+      label: 'Profile',
+    },
+    {
+      icon: CogIcon,
+      label: 'Settings',
+    },
+    {
+      icon: LogoutIcon,
+      label: 'Logout',
+    }];
 
   return (
     <div
-      className={`bg-white h-12 flex flex-row py-2 px-4 border-b-2 border-gray-100 ${props.className}`}
+      className={`bg-white h-12 flex flex-row py-1 px-1 border-b-2 border-gray-100 ${props.className}`}
     >
       <div className="flex items-center select-none cursor-pointer" onClick={toggleSidebar}>
         <MenuIcon className="w-5 h-5 md:hidden" />
       </div>
-      <Dropdown className="ml-auto" title={ctx.username} imgSrc={ctx.userImage}>
-        <div className="py-1" role="none">
-          <div className={menuItemClasses} role="menuitem">
-            <UserIcon className="w-6 h-6 mr-2" />
-            Profile
-          </div>
-          <div className={menuItemClasses} role="menuitem">
-            <CogIcon className="w-6 h-6 mr-2" />
-            Settings
-          </div>
+      <Menu as="div" className="ml-auto">
+        <div>
+          <Menu.Button className="inline-flex justify-center items-center w-full px-2 py-1 text-sm font-medium text-black space-x-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+            <div>{ctx.username}</div>
+            <div className="flex justify-center items-center">
+              <Image src={ctx.userImage} width={32} height={32} className="cursor-pointer" />
+            </div>
+            <ChevronDownIcon
+              className="w-5 h-5 -mr-1"
+              aria-hidden="true"
+            />
+          </Menu.Button>
         </div>
-        <div className="py-1" role="none">
-          <div className={menuItemClasses} role="menuitem" onClick={logout}>
-            <LogoutIcon className="w-6 h-6 mr-2" />
-            Logout
+
+        <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="px-1 py-1 ">
+            {icons.map((icon) => (
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? 'bg-indigo-500 text-white' : 'text-gray-900'
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                  >
+                    <icon.icon className="w-6 h-6 mr-2" />
+                    {icon.label}
+                  </button>
+                )}
+              </Menu.Item>
+            ))}
           </div>
-        </div>
-      </Dropdown>
+        </Menu.Items>
+      </Menu>
     </div>
   );
 };

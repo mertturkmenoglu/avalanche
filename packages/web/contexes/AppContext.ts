@@ -13,7 +13,7 @@ export const AppContext = createContext<AppContextType>({
 });
 
 export const defaultAppContextValues: AppContextType = {
-  username: '',
+  username: 'mert',
   userImage: '/profile.png',
   appbar: true,
 };
