@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface SidebarItem {
   link: string
   name: string

@@ -1,22 +1,12 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+
 import Head from 'next/head';
 
 import ApplicationMotto from '../components/ApplicationMotto';
-import RegisterInputForm, { RegisterFormData } from '../components/RegisterInputForm';
-
-import { useRegisterMutation } from '../generated/graphql';
+import RegisterInputForm from '../components/RegisterInputForm';
 
 const RegisterPage = (): JSX.Element => {
-  const router = useRouter();
-  const [, register] = useRegisterMutation();
-
-  const onFormSubmitHandler = async (data: RegisterFormData) => {
-    const response = await register({ data });
-
-    if (!response.data?.register.errors) {
-      router.push('/');
-    }
+  const onFormSubmitHandler = async () => {
   };
 
   return (

@@ -7,7 +7,6 @@ import {
 
 import { AppContext } from '../contexes/AppContext';
 import Dropdown from './Dropdown';
-import { useLogoutMutation } from '../generated/graphql';
 
 interface Props {
   className?: string;
@@ -16,7 +15,6 @@ interface Props {
 const AppBar = (props: Props): JSX.Element => {
   const ctx = useContext(AppContext);
   const router = useRouter();
-  const [, logoutMutation] = useLogoutMutation();
 
   const menuItemClasses = 'flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none items-center';
 
@@ -25,7 +23,6 @@ const AppBar = (props: Props): JSX.Element => {
   };
 
   const logout = async () => {
-    await logoutMutation();
     await router.push('/login');
   };
 
