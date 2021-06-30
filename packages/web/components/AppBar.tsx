@@ -7,8 +7,8 @@ import {
 import { Menu } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { AppContext } from '../contexes/AppContext';
 import { useRouter } from 'next/router';
+import { AppContext } from '../contexes/AppContext';
 
 interface Props {
   className?: string;
