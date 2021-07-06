@@ -5,7 +5,6 @@ import {
 } from '@heroicons/react/outline';
 
 import { Menu } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { AppContext } from '../contexes/AppContext';
@@ -49,26 +48,21 @@ const AppBar = (props: Props): JSX.Element => {
       <Menu as="div" className="ml-auto">
         <div>
           <Menu.Button className="inline-flex justify-center items-center w-full px-2 py-1 text-sm font-medium text-black space-x-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-            <div>{ctx.username}</div>
             <div className="flex justify-center items-center">
               <Image src={ctx.userImage} width={32} height={32} className="cursor-pointer" />
             </div>
-            <ChevronDownIcon
-              className="w-5 h-5 -mr-1"
-              aria-hidden="true"
-            />
           </Menu.Button>
         </div>
 
         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             {menuItems.map((item) => (
-              <Menu.Item>
+              <Menu.Item key={item.label}>
                 {({ active }) => (
                   <button
                     className={`${
                       active ? 'bg-indigo-500 text-white' : 'text-gray-900'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-red-900`}
                     onClick={item.action}
                   >
                     <item.icon className="w-6 h-6 mr-2" />

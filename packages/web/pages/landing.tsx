@@ -1,98 +1,204 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import {
-  FingerPrintIcon,
-  ChevronDoubleDownIcon,
-  CloudIcon,
-  ServerIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  CollectionIcon,
-  CubeIcon,
-  DatabaseIcon,
-} from '@heroicons/react/outline';
+import Image from 'next/image';
+import TwitterIcon from '../components/TwitterIcon';
+import GitHubIcon from '../components/GitHubIcon';
+import LinkedinIcon from '../components/LinkedInIcon';
 
-const LandingPage = (): JSX.Element => (
-  <div className="h-screen bg-white">
-    <div className="w-full flex justify-around mt-4 items-center border-gray-50">
-      <Image src="/mountainsIndigo.svg" height={32} width={32} />
+const LandingPage = (): JSX.Element => {
+  const data = [
+    {
+      number: 1,
+      title: 'Designed for productivity',
+      content: 'We designed Avalanche for all your possible needs in mind.',
+    },
+    {
+      number: 2,
+      title: 'Avalanche is smart',
+      content: 'Avalanche will understand your work and suggest actions to make your life easier',
+    },
+    {
+      number: 3,
+      title: 'Free, Forever',
+      content: 'Avalanche basic plan is free, and will always be free. You don\'t need to enter your credit card information, or pay anything.',
+    },
+  ];
 
-      <div className="flex space-x-8 text-sm font-medium text-gray-700">
-        <Link href="/">
-          <div className="border-b-2 border-indigo-900 select-none cursor-pointer">Home</div>
-        </Link>
-        <Link href="/login">
-          <div className="select-none cursor-pointer border-b-2 border-white hover:border-indigo-900 transition-all ease-in-out delay-150 duration-100">
-            Login
-          </div>
-        </Link>
-        <Link href="/register">
-          <div className="select-none cursor-pointer border-b-2 border-white hover:border-indigo-900 transition-all ease-in-out delay-150 duration-100">
-            Register
-          </div>
-        </Link>
-      </div>
-    </div>
+  const footerData = [
+    {
+      data: [
+        {
+          text: 'Help Center',
+          url: '/help',
+        },
+        {
+          text: 'Career',
+          url: '/career',
+        },
+        {
+          text: 'Docs',
+          url: '/docs',
+        },
+        {
+          text: 'Privacy',
+          url: '/privacy',
+        },
+      ],
+    },
+    {
+      data: [
+        {
+          text: 'About',
+          url: '/about',
+        },
+        {
+          text: 'API',
+          url: '/api',
+        },
+        {
+          text: 'Status',
+          url: '/status',
+        },
+        {
+          text: 'Terms',
+          url: '/terms',
+        },
+      ],
+    },
+  ];
 
-    <div className="block md:flex md:items-center mt-8 md:mt-24 md:w-full">
-      <div className="w-11/12 sm:w-64 h-64 lg:w-96 bg-blue-700 flex ml-auto mr-auto md:ml-12 md:mr-2 rounded-lg ">
-        {/* Photo by ian dooley on Unsplash */}
-        <Image
-          className="object-cover rounded-lg opacity-50 bg-blue-500"
-          src="/hero.jpg"
-          width={640}
-          height={256}
-        />
-      </div>
+  const footerIcons = [
+    {
+      icon: TwitterIcon,
+      url: 'https://twitter.com/capreaee',
+    },
+    {
+      icon: GitHubIcon,
+      url: 'https://github.com/mertturkmenoglu',
+    },
+    {
+      icon: LinkedinIcon,
+      url: 'https://linkedin.com/in/mert-turkmenoglu',
+    },
+  ];
 
-      <div className="w-11/12 sm:w-64 md:w-64 bg-gradient-to-tr from-blue-500 to-blue-900 h-64 rounded-lg flex flex-1 mt-4 md:mt-0 mx-auto md:mx-0 md:mr-12">
-        <div className="block md:flex md:justify-between pt-16 md:pt-0 mx-auto md:mx-0 items-center md:ml-8 w-full">
-          <div className="text-center md:text-left">
-            <div className="text-3xl text-white font-semibold uppercase tracking-wide leading-8  hover:bg-yellow-300 hover:text-white ease-in-out delay-200 transform transition duration-1000 hover:scale-105 hover:-skew-x-12">
-              Avalanche
-            </div>
-            <div className="text-base text-white">
-              Productivity, <span className="underline">re-designed</span>
-            </div>
-          </div>
-          <div className="text-center mt-6 md:mt-0 md:ml-8 md:mr-8 lg:ml-auto lg:mr-24">
-            <button className="bg-yellow-300 px-6 py-2 rounded-full text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300">
-              <Link href="/register">Get Started</Link>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="w-full">
-      <ChevronDoubleDownIcon className="h-8 w-8 mx-auto mt-24 mb-12 text-indigo-900 animate-bounce" />
-    </div>
-
-    <div id="hero" className="mx-24 mt-24 grid grid-cols-10 gap-20 bg-indigo-50">
-      <div className="space-y-4 col-span-3 col-start-3 mt-36">
-        <div className="text-gray-600 text-7xl font-semibold tracking-wide hover:bg-yellow-300 hover:text-white ease-in-out delay-200 transform transition duration-1000 hover:scale-105 hover:-skew-x-12">
+  return (
+    <div className='h-screen bg-white'>
+      <header>
+        <div className='w-7/12 mx-auto flex justify-between pt-4 items-center'>
+          <div className='font-medium text-lg text-indigo-700'>
           Avalanche
+          </div>
+          <Link href='/signin'>
+            <a className={`text-sm font-medium select-none cursor-pointer px-4 py-1 text-indigo-500 
+            inline-flex border-b-2 border-opacity-0 hover:border-opacity-100 
+            border-indigo-700 g-focus`}>
+            Sign In
+            </a>
+          </Link>
         </div>
-        <div>Productivity, re-designed</div>
-        <hr className="border-2 border-yellow-300" />
-      </div>
-      <div className="col-span-3">
-        <div className="grid grid-rows-4 grid-flow-col gap-2">
-          <CloudIcon className="h-24 w-48 text-white bg-yellow-500 row-span-1 -skew-x-6 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <FingerPrintIcon className="h-24 w-48 text-white bg-red-500 row-span-1 -skew-x-6 transform -translate-x-3 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <ServerIcon className="h-24 w-48 text-white bg-green-500 row-span-1 -skew-x-6 transform -translate-x-6 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <DatabaseIcon className="h-24 w-48 text-white bg-indigo-500 row-span-1 -skew-x-6 transform -translate-x-9 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <CalendarIcon className="h-24 w-48 text-white bg-gray-500 row-span-1 -skew-x-6 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <ChartPieIcon className="h-24 w-48 text-white bg-pink-500 row-span-1 -skew-x-6 transform -translate-x-3 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <CollectionIcon className="h-24 w-48 text-white bg-purple-500 row-span-1 -skew-x-6 transform -translate-x-6 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-          <CubeIcon className="h-24 w-48 text-white bg-yellow-200 row-span-1 -skew-x-6 transform -translate-x-9 transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-x-12" />
-        </div>
-      </div>
-    </div>
+      </header>
 
-    {/* <hr className="mx-32 border border-indigo-200" /> */}
-  </div>
-);
+      <main>
+        <section>
+          <div className='w-full bg-white flex justify-around items-center dark:bg-gray-800 mt-32'>
+            <div className='flex items-center justify-between w-7/12'>
+              <h2 className='flex flex-col text-3xl font-extrabold text-black dark:text-white'>
+                <span className='block'>Re-designing productivity</span>
+                <span className='block text-indigo-500'>with Avalanche</span>
+                <div className='mt-4'>
+                  <Link href="/signin">
+                    <a className='py-2 px-6 bg-indigo-600 text-white rounded-md text-center text-base g-focus'>
+                      Get Started
+                    </a>
+                  </Link>
+                </div>
+              </h2>
+              <div>
+                <Image src={'/landing_hero.svg'} width={256} height={256} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className='my-32 w-7/12 flex items-center mx-auto'>
+          <div className='container bg-white dark:bg-gray-800'>
+            <div className='flex flex-wrap -mx-8'>
+              <div className='w-full lg:w-1/2 px-8'>
+                <div className='mb-12 lg:mb-0 pb-12 lg:pb-0 border-b lg:border-b-0'>
+                  <h2 className='mb-4 text-3xl lg:text-4xl font-bold font-heading dark:text-white'>
+                  Start your journey today
+                  </h2>
+                  <p className='mb-8 leading-loose text-gray-500 dark:text-gray-300'>
+                  With Avalanche, you can maximize your productivity, double the completed tasks,
+                  and relax for the rest of the day.
+                  </p>
+                </div>
+              </div>
+              <div className='w-full lg:w-1/2 px-8'>
+                <ul className='space-y-12'>
+                  {data.map((item) => (
+                    <li className='flex -mx-4'>
+                      <div className='px-4'>
+                        <span className={`flex w-16 h-16 mx-auto items-center 
+                        justify-center text-2xl font-bold 
+                        font-heading rounded-full bg-blue-50 text-indigo-700`
+                        }>
+                          {item.number}
+                        </span>
+                      </div>
+                      <div className='px-4'>
+                        <h3 className='my-4 text-xl font-semibold dark:text-white'>
+                          {item.title}
+                        </h3>
+                        <p className='text-gray-500 dark:text-gray-300 leading-loose'>
+                          {item.content}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <hr className="w-7/12 mx-auto border border-indigo-200" />
+
+      <footer className="bg-white dark:bg-gray-800 pt-4 pb-8 xl:pt-8">
+        <div
+          className="max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400 dark:text-gray-300">
+          <ul className="text-lg font-light pb-8 flex flex-wrap justify-center">
+            {footerData.map((section, index) => (
+              <li className="w-1/2 md:w-1/3 lg:w-1/3" key={index}>
+                <div className="text-center">
+                  <ul>
+                    {section.data.map((action) => (
+                      <li
+                        key={action.url}
+                        className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
+                        <a href={action.url} className="g-focus">
+                          {action.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="pt-8 flex border-t border-gray-200 max-w-xs mx-auto items-center justify-between">
+            {footerIcons.map((element) => (
+              <a href={element.url} key={element.url} className="g-focus">
+                <element.icon className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
 export default LandingPage;

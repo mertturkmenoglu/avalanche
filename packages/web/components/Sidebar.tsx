@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import SidebarItem from '../interfaces/SidebarItem';
+import { AppContext } from '../contexes/AppContext';
 
 class Props {
   className?: string = '';
@@ -11,13 +12,14 @@ class Props {
 }
 
 const Sidebar = (props: Props): JSX.Element => {
+  const ctx = useContext(AppContext);
   const router = useRouter();
 
   const navElementClasses = 'my-2 px-4 py-2 rounded-full cursor-pointer hover:bg-green-50 hover:text-gray-700 flex';
 
   return (
     <div className={`h-screen fixed overflow-auto border-r-2 border-gray-100 ${props.className}`}>
-      <div className="ml-9">
+      <div className={`ml-9 ${ctx.appbar ? 'visible' : 'invisible'}`}>
         Avalanche
       </div>
       <nav>
@@ -33,8 +35,8 @@ const Sidebar = (props: Props): JSX.Element => {
                       : `${navElementClasses} bg-green-50`
                   }
                 >
-                  <IconTag className="h-5 w-5 mr-2" />{' '}
-                  <span className="select-none text-sm">{it.name}</span>
+                  <IconTag className="h-5 w-5" />
+                  {ctx.appbar && <span className="select-none text-sm ml-2">{' '}{it.name}</span>}
                 </div>
               </Link>
             );
