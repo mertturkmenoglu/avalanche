@@ -35,7 +35,7 @@ const AppBar = (props: Props): JSX.Element => {
     {
       icon: LogoutIcon,
       label: 'Logout',
-      action: () => router.push('/login'),
+      action: () => router.push('/landing'),
     }];
 
   return (

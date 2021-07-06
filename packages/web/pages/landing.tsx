@@ -85,7 +85,7 @@ const LandingPage = (): JSX.Element => {
   return (
     <div className='h-screen bg-white'>
       <header>
-        <div className='w-7/12 mx-auto flex justify-between pt-4 items-center'>
+        <div className='w-11/12 md:w-7/12 mx-auto flex justify-between pt-4 items-center'>
           <div className='font-medium text-lg text-indigo-700'>
           Avalanche
           </div>
@@ -101,8 +101,8 @@ const LandingPage = (): JSX.Element => {
 
       <main>
         <section>
-          <div className='w-full bg-white flex justify-around items-center dark:bg-gray-800 mt-32'>
-            <div className='flex items-center justify-between w-7/12'>
+          <div className='w-11/12 md:w-7/12 mx-auto bg-white flex justify-around items-center dark:bg-gray-800 mt-32'>
+            <div className='flex items-center justify-between w-full'>
               <h2 className='flex flex-col text-3xl font-extrabold text-black dark:text-white'>
                 <span className='block'>Re-designing productivity</span>
                 <span className='block text-indigo-500'>with Avalanche</span>
@@ -121,7 +121,7 @@ const LandingPage = (): JSX.Element => {
           </div>
         </section>
 
-        <section className='my-32 w-7/12 flex items-center mx-auto'>
+        <section className='my-32 w-11/12 md:w-7/12 flex items-center mx-auto'>
           <div className='container bg-white dark:bg-gray-800'>
             <div className='flex flex-wrap -mx-8'>
               <div className='w-full lg:w-1/2 px-8'>
@@ -138,7 +138,7 @@ const LandingPage = (): JSX.Element => {
               <div className='w-full lg:w-1/2 px-8'>
                 <ul className='space-y-12'>
                   {data.map((item) => (
-                    <li className='flex -mx-4'>
+                    <li className='flex -mx-4' key={item.number}>
                       <div className='px-4'>
                         <span className={`flex w-16 h-16 mx-auto items-center 
                         justify-center text-2xl font-bold 
@@ -164,7 +164,7 @@ const LandingPage = (): JSX.Element => {
         </section>
       </main>
 
-      <hr className="w-7/12 mx-auto border border-indigo-200" />
+      <hr className="w-11/12 md:w-7/12 mx-auto border border-indigo-200" />
 
       <footer className="bg-white dark:bg-gray-800 pt-4 pb-8 xl:pt-8">
         <div
