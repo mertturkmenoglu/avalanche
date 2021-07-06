@@ -172,7 +172,7 @@ const LandingPage = (): JSX.Element => {
       <footer className="bg-white dark:bg-gray-800 pt-4 pb-8 xl:pt-8">
         <div
           className="max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400 dark:text-gray-300">
-          <ul className="text-sm pb-8 flex flex-wrap justify-center">
+          <ul className="text-sm font-semibold pb-8 flex flex-wrap justify-center">
             {footerData.map((section, index) => (
               <li className="w-1/2 md:w-1/3 lg:w-1/3" key={index}>
                 <div className="text-center">
