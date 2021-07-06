@@ -12,6 +12,7 @@
     "autoprefixer": "^10.0.4",
     "classnames": "^2.3.1",
     "next": "latest",
+    "next-i18next": "^8.5.3",
     "postcss": "^8.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

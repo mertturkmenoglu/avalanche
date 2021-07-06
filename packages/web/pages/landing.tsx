@@ -71,14 +71,17 @@ const LandingPage = (): JSX.Element => {
     {
       icon: TwitterIcon,
       url: 'https://twitter.com/capreaee',
+      label: 'Go to Twitter page',
     },
     {
       icon: GitHubIcon,
       url: 'https://github.com/mertturkmenoglu',
+      label: 'Go to GitHub page',
     },
     {
       icon: LinkedinIcon,
       url: 'https://linkedin.com/in/mert-turkmenoglu',
+      label: 'Go to LinkedIn page',
     },
   ];
 
@@ -87,13 +90,13 @@ const LandingPage = (): JSX.Element => {
       <header>
         <div className='w-11/12 md:w-7/12 mx-auto flex justify-between pt-4 items-center'>
           <div className='font-medium text-lg text-indigo-700'>
-          Avalanche
+            <h1>Avalanche</h1>
           </div>
           <Link href='/signin'>
-            <a className={`text-sm font-medium select-none cursor-pointer px-4 py-1 text-indigo-500 
+            <a className={`text-sm font-medium select-none cursor-pointer px-4 py-1 text-indigo-700 
             inline-flex border-b-2 border-opacity-0 hover:border-opacity-100 
             border-indigo-700 g-focus`}>
-            Sign In
+              Sign In
             </a>
           </Link>
         </div>
@@ -115,7 +118,7 @@ const LandingPage = (): JSX.Element => {
                 </div>
               </h2>
               <div>
-                <Image src={'/landing_hero.svg'} width={256} height={256} />
+                <Image src={'/landing_hero.svg'} width={256} height={256} alt="Person using a laptop"/>
               </div>
             </div>
           </div>
@@ -169,7 +172,7 @@ const LandingPage = (): JSX.Element => {
       <footer className="bg-white dark:bg-gray-800 pt-4 pb-8 xl:pt-8">
         <div
           className="max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400 dark:text-gray-300">
-          <ul className="text-lg font-light pb-8 flex flex-wrap justify-center">
+          <ul className="text-sm pb-8 flex flex-wrap justify-center">
             {footerData.map((section, index) => (
               <li className="w-1/2 md:w-1/3 lg:w-1/3" key={index}>
                 <div className="text-center">
@@ -177,7 +180,7 @@ const LandingPage = (): JSX.Element => {
                     {section.data.map((action) => (
                       <li
                         key={action.url}
-                        className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
+                        className="mb-4 text-gray-900 dark:hover:text-white transition-colors duration-200">
                         <a href={action.url} className="g-focus">
                           {action.text}
                         </a>
@@ -191,7 +194,8 @@ const LandingPage = (): JSX.Element => {
           <div className="pt-8 flex border-t border-gray-200 max-w-xs mx-auto items-center justify-between">
             {footerIcons.map((element) => (
               <a href={element.url} key={element.url} className="g-focus">
-                <element.icon className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200" />
+                <div id={element.url} tabIndex={-1} aria-hidden='true' className="hidden">{element.label}</div>
+                <element.icon className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200" aria-labelledby={element.url} />
               </a>
             ))}
           </div>
