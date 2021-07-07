@@ -1,9 +1,9 @@
 import React from 'react';
 
-interface SidebarItem {
+interface ISidebarItem {
   link: string
   name: string
   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
 }
 
-export default SidebarItem;
+export default ISidebarItem;
