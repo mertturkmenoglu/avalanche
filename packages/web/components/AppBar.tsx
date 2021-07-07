@@ -43,9 +43,15 @@ const AppBar = (props: Props): JSX.Element => {
       className={`bg-white dark:bg-gray-600 h-12 flex flex-row py-1 border-b-2 border-gray-100 ${props.className}`}
     >
       <form className="ml-auto flex items-center">
-        <input type="text" className="border-2 border-indigo-800 border rounded-full g-focus px-2 text-sm font-bold placeholder-black placeholder-opacity-70 py-1" placeholder="Search"/>
+        <input
+          type="text"
+          className={`
+            bg-trueGray-100 rounded-full g-focus px-4 
+            text-sm font-semibold placeholder-indigo-800 placeholder-opacity-70 py-1
+          `}
+          placeholder="Search"/>
         <button type="submit" className="g-focus" aria-labelledby="app-bar-search-icon-desc">
-          <SearchIcon className="h-5 w-5 mx-2 text-indigo-800"/>
+          <SearchIcon className="h-5 w-5 -ml-8 text-indigo-800"/>
         </button>
         <p id="app-bar-search-icon-desc" className="hidden" tabIndex={-1}>Search</p>
       </form>
