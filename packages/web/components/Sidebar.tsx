@@ -17,7 +17,9 @@ const Sidebar = (props: Props): JSX.Element => {
     <div className={`overflow-hidden border-r-2 border-gray-100 ${props.className}`}>
       <nav className="mx-4">
         {props.items.map((item) => (
-          <SidebarItem item={item} active={item.link === router.pathname} />
+          <SidebarItem item={item}
+            active={item.link === router.pathname || (router.pathname.startsWith('/user') && item.link.startsWith('/user'))}
+          />
         ))}
       </nav>
     </div>
