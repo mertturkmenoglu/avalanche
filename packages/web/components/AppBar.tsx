@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import {
-  UserIcon, CogIcon, LogoutIcon, MenuIcon,
+  UserIcon, CogIcon, LogoutIcon, MenuIcon, SearchIcon,
 } from '@heroicons/react/outline';
 
 import { Menu } from '@headlessui/react';
@@ -39,17 +39,25 @@ const AppBar = (props: Props): JSX.Element => {
     }];
 
   return (
-    <div
-      className={`bg-white h-12 flex flex-row py-1 px-1 border-b-2 border-gray-100 ${props.className}`}
+    <header
+      className={`bg-white dark:bg-gray-600 h-12 flex flex-row py-1 border-b-2 border-gray-100 ${props.className}`}
     >
-      <div className="flex items-center select-none cursor-pointer" onClick={toggleSidebar}>
+      <form className="ml-auto flex items-center">
+        <input type="text" className="border-2 border-indigo-800 border rounded-full g-focus px-2 text-sm font-bold placeholder-black placeholder-opacity-70 py-1" placeholder="Search"/>
+        <button type="submit" className="g-focus" aria-labelledby="app-bar-search-icon-desc">
+          <SearchIcon className="h-5 w-5 mx-2 text-indigo-800"/>
+        </button>
+        <p id="app-bar-search-icon-desc" className="hidden" tabIndex={-1}>Search</p>
+      </form>
+      <div className="flex items-center select-none cursor-pointer ml-4" onClick={toggleSidebar}>
         <MenuIcon className="w-5 h-5 md:hidden" />
       </div>
-      <Menu as="div" className="ml-auto">
+      <Menu as="div" className="focus:outline-none focus:border-0">
         <div>
-          <Menu.Button className="inline-flex justify-center items-center w-full px-2 py-1 text-sm font-medium text-black space-x-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+          <p id="app-bar-menu-item-desc" className="hidden" tabIndex={-1}>User Menu</p>
+          <Menu.Button className="inline-flex justify-center items-center w-full px-2 py-1 text-sm font-medium text-black space-x-2 g-focus" tabIndex={0} aria-labelledby="app-bar-menu-item-desc">
             <div className="flex justify-center items-center">
-              <Image src={ctx.userImage} width={32} height={32} className="cursor-pointer" />
+              <Image src={ctx.userImage} width={32} height={32} className="cursor-pointer" alt="User Profile Image" />
             </div>
           </Menu.Button>
         </div>
@@ -74,7 +82,7 @@ const AppBar = (props: Props): JSX.Element => {
           </div>
         </Menu.Items>
       </Menu>
-    </div>
+    </header>
   );
 };
 

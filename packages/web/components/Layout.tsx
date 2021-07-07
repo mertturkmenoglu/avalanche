@@ -13,6 +13,7 @@ import AppBar from './AppBar';
 
 import Sidebar from './Sidebar';
 import { AppContext, AppContextType } from '../contexes/AppContext';
+import FlameIcon from './FlameIcon';
 
 interface Props {
   children: React.ReactNode;
@@ -33,10 +34,20 @@ const Layout = ({ children }: Props): JSX.Element => {
   ];
 
   return (
-    <div className="h-screen flex">
-      {ctx.appbar ? <Sidebar items={items} className="py-4" /> : null}
-      <AppBar className="fixed top-0 right-0 left-48 -ml-2" />
-      <div className="ml-48 mt-12">{children}</div>
+    <div className="h-screen flex overflow-hidden">
+      <div className="h-full hidden lg:block w-48">
+        <div className="h-full dark:bg-gray-700">
+          <div className="flex items-center justify-center py-2">
+            <FlameIcon />
+          </div>
+          <Sidebar items={items} />
+        </div>
+      </div>
+
+      <div className="flex flex-col w-full">
+        <AppBar className="w-full pr-2" />
+        <main className="overflow-auto">{children}</main>
+      </div>
     </div>
   );
 };
