@@ -35,12 +35,12 @@ const Layout = ({ children }: Props): JSX.Element => {
 
   return (
     <div className="h-screen flex overflow-hidden">
-      <div className="h-full hidden lg:block w-48">
-        <div className="h-full dark:bg-gray-700">
+      <div className="hidden lg:block w-48">
+        <div className="dark:bg-gray-700">
           <div className="flex items-center justify-center py-2">
             <FlameIcon />
           </div>
-          <Sidebar items={items} />
+          <Sidebar items={items} className="h-screen"/>
         </div>
       </div>
 
