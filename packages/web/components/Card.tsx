@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -10,12 +10,19 @@ export interface CardProps {
 }
 
 const Card = ({
-  children, background = 'bg-white', rounded = 'md', shadow = 'md', className,
+  children,
+  background = 'bg-white',
+  rounded = 'md',
+  shadow = 'md',
+  className,
 }: CardProps) => {
-  const classes = classnames(background, rounded ? `rounded-${rounded}` : '', shadow ? `shadow-${shadow}` : '', className);
-  return (
-    <div className={classes}>{children}</div>
+  const classes = clsx(
+    background,
+    rounded ? `rounded-${rounded}` : '',
+    shadow ? `shadow-${shadow}` : '',
+    className,
   );
+  return <div className={classes}>{children}</div>;
 };
 
 export default Card;
